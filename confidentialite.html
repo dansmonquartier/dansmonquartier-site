@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidentialité — Dans mon quartier</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .legal { padding: 160px 32px 100px; max-width: 760px; margin: 0 auto; }
+  .legal h1 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 12px; }
+  .legal .updated { color: var(--muted-dim); font-size: 14px; margin-bottom: 48px; }
+  .legal h2 { font-family: var(--sans); font-size: 1.1rem; margin-top: 44px; margin-bottom: 14px; color: var(--gold); }
+  .legal p, .legal li { color: var(--muted); line-height: 1.75; font-size: 1rem; margin-bottom: 14px; }
+  .legal ul { padding-left: 20px; margin-bottom: 14px; }
+  .legal a { color: var(--gold); text-decoration: underline; }
+  .back { display: inline-block; margin-bottom: 32px; color: var(--muted); font-size: 14px; }
+  .back:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <img src="images/logo.png" alt="" class="brand-mark">
+      <span class="brand-name">Dans mon quartier</span>
+    </div>
+    <a href="index.html" class="btn btn-ghost btn-small">Retour au site</a>
+  </div>
+</nav>
+
+<main class="legal">
+  <h1>Politique de confidentialité</h1>
+  <p class="updated">Dernière mise à jour : août 2026</p>
+
+  <p>Dans mon quartier est un projet indépendant, développé par des passionnés. On ne revend aucune donnée, on n'affiche aucune publicité, et on collecte le strict minimum pour faire fonctionner l'application. Voici, en toute transparence, ce qu'on garde et pourquoi.</p>
+
+  <h2>Ce qu'on collecte</h2>
+  <ul>
+    <li><strong>Compte</strong> — prénom, nom et adresse email, pour créer ton compte et l'associer à tes avis (toujours signés de ton vrai nom).</li>
+    <li><strong>Localisation</strong> — utilisée uniquement pour vérifier que tu es bien dans la zone couverte (Paris intra-muros pour l'instant). Jamais enregistrée en historique, jamais partagée.</li>
+    <li><strong>Contenu que tu publies</strong> — les avis, favoris et groupes que tu crées ou rejoins.</li>
+  </ul>
+
+  <h2>Ce qu'on ne fait jamais</h2>
+  <ul>
+    <li>Revendre ou partager tes données avec des tiers à des fins publicitaires.</li>
+    <li>Afficher de la publicité dans l'application.</li>
+    <li>Suivre ton activité en dehors de l'application.</li>
+  </ul>
+
+  <h2>Hébergement</h2>
+  <p>Les données sont hébergées via Supabase (base de données et authentification). Les emails transactionnels (confirmation de compte, réinitialisation de mot de passe) sont envoyés via Resend.</p>
+
+  <h2>Tes droits</h2>
+  <p>Tu peux supprimer ton compte et l'ensemble de tes données à tout moment directement depuis l'application, dans les réglages de ton profil. Pour toute question, écris-nous.</p>
+
+  <h2>Contact</h2>
+  <p>Une question sur tes données ? Écris à <a href="mailto:contact@dansmonquartier.online">contact@dansmonquartier.online</a>.</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">
+      <img src="images/logo.png" alt="" class="brand-mark">
+      <span class="brand-name">Dans mon quartier</span>
+    </div>
+    <p class="footer-copy">© 2026 Dans mon quartier — Paris intra-muros.</p>
+  </div>
+</footer>
+
+</body>
+</html>
