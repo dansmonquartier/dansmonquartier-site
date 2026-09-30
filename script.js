@@ -19,13 +19,3 @@ const nav = document.getElementById("nav");
 window.addEventListener("scroll", () => {
   nav.style.boxShadow = window.scrollY > 8 ? "0 8px 24px -12px rgba(0,0,0,0.5)" : "none";
 });
-
-const form = document.getElementById("signup-form");
-const note = document.getElementById("form-note");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    note.textContent = "Merci ! On te prévient dès que c'est prêt.";
-    form.reset();
-  });
-}
