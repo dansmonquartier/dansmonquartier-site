@@ -1,6 +1,4 @@
-// À remplacer par le lien TestFlight public une fois généré dans App Store
-// Connect (ou le lien App Store, une fois l'app publiée).
-const LIEN_TELECHARGEMENT = "https://dansmonquartier.online";
+const LIEN_TELECHARGEMENT = "https://apps.apple.com/fr/app/dans-mon-quartier/id6801119263";
 
 const params = new URLSearchParams(window.location.search);
 const codeParrainage = (params.get("ref") || "").trim();
