@@ -1,8 +1,9 @@
-// "ref", pas "code" : Supabase ajoute son propre paramètre ?code= à l'URL
-// de retour après confirmation d'email (flow PKCE) — les deux entreraient
-// en collision si on utilisait le même nom.
+// "ref"/"groupe", pas "code" : Supabase ajoute son propre paramètre
+// ?code= à l'URL de retour après confirmation d'email (flow PKCE) — ça
+// entrerait en collision si on utilisait le même nom.
 const params = new URLSearchParams(window.location.search);
 const codeParrainage = (params.get("ref") || "").trim();
+const codeGroupe = (params.get("groupe") || "").trim();
 
 const form = document.getElementById("join-form");
 const note = document.getElementById("join-note");
@@ -42,7 +43,7 @@ form.addEventListener("submit", async (e) => {
     email,
     password,
     options: {
-      data: { prenom, nom, code_parrain: codeParrainage || undefined },
+      data: { prenom, nom, code_parrain: codeParrainage || undefined, code_groupe: codeGroupe || undefined },
       emailRedirectTo: redirectUrl.toString(),
     },
   });
