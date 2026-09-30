@@ -29,20 +29,20 @@ form.addEventListener("submit", async (e) => {
   submitBtn.textContent = "Création en cours…";
   afficherNote("", false);
 
-  // Le code de parrainage passe par localStorage plutôt que par l'URL de
-  // redirection : Supabase compare emailRedirectTo à la liste blanche du
-  // dashboard de façon stricte, un ?ref=... collé dessus suffit à casser
-  // la correspondance et à faire retomber le lien de confirmation sur le
-  // Site URL par défaut (localhost:3000) au lieu de confirmation.html.
-  if (codeParrainage) localStorage.setItem("dmq_ref", codeParrainage);
-
+  // Le code de parrainage voyage dans les métadonnées du compte (comme
+  // prénom/nom), pas dans l'URL de redirection ni le navigateur : la
+  // confirmation d'email peut se faire depuis n'importe quel appareil
+  // (ex. inscription sur iPhone, confirmation sur Mac) sans rien perdre.
+  // L'attribution elle-même se fait automatiquement côté serveur dès que
+  // l'email est confirmé (voir le trigger gerer_confirmation_parrainage
+  // dans admin/parrainage.sql) — rien à faire depuis confirmation.js.
   const redirectUrl = new URL("confirmation.html", window.location.href);
 
   const { error } = await supabaseClient.auth.signUp({
     email,
     password,
     options: {
-      data: { prenom, nom },
+      data: { prenom, nom, code_parrain: codeParrainage || undefined },
       emailRedirectTo: redirectUrl.toString(),
     },
   });

@@ -1,10 +1,5 @@
 const LIEN_TELECHARGEMENT = "https://apps.apple.com/fr/app/dans-mon-quartier/id6801119263";
 
-// Lu depuis localStorage (posé par rejoindre.js), pas depuis l'URL — voir
-// le commentaire dans rejoindre.js sur la correspondance stricte de
-// Supabase pour emailRedirectTo.
-const codeParrainage = localStorage.getItem("dmq_ref") || "";
-
 const etatChargement = document.getElementById("etat-chargement");
 const etatSucces = document.getElementById("etat-succes");
 const etatErreur = document.getElementById("etat-erreur");
@@ -21,17 +16,14 @@ function afficher(etat) {
 
 let traite = false;
 
-supabaseClient.auth.onAuthStateChange(async (event, session) => {
+// L'attribution du parrainage se fait automatiquement côté serveur (voir
+// le trigger gerer_confirmation_parrainage dans admin/parrainage.sql) dès
+// que email_confirmed_at passe à non-null sur auth.users — rien à faire
+// ici, on attend juste que la session s'établisse pour afficher le succès.
+supabaseClient.auth.onAuthStateChange((event, session) => {
   if (traite || !session) return;
   if (event !== "SIGNED_IN" && event !== "INITIAL_SESSION") return;
   traite = true;
-
-  if (codeParrainage) {
-    const { error } = await supabaseClient.rpc("appliquer_parrainage", { p_code: codeParrainage });
-    if (error) console.error("appliquer_parrainage a échoué :", error.message);
-    localStorage.removeItem("dmq_ref");
-  }
-
   afficher(etatSucces);
 });
 
