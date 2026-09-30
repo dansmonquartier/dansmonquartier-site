@@ -27,7 +27,8 @@ supabaseClient.auth.onAuthStateChange(async (event, session) => {
   traite = true;
 
   if (codeParrainage) {
-    await supabaseClient.rpc("appliquer_parrainage", { p_code: codeParrainage });
+    const { error } = await supabaseClient.rpc("appliquer_parrainage", { p_code: codeParrainage });
+    if (error) console.error("appliquer_parrainage a échoué :", error.message);
     localStorage.removeItem("dmq_ref");
   }
 
