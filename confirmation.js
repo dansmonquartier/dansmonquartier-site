@@ -1,7 +1,9 @@
 const LIEN_TELECHARGEMENT = "https://apps.apple.com/fr/app/dans-mon-quartier/id6801119263";
 
-const params = new URLSearchParams(window.location.search);
-const codeParrainage = (params.get("ref") || "").trim();
+// Lu depuis localStorage (posé par rejoindre.js), pas depuis l'URL — voir
+// le commentaire dans rejoindre.js sur la correspondance stricte de
+// Supabase pour emailRedirectTo.
+const codeParrainage = localStorage.getItem("dmq_ref") || "";
 
 const etatChargement = document.getElementById("etat-chargement");
 const etatSucces = document.getElementById("etat-succes");
@@ -26,6 +28,7 @@ supabaseClient.auth.onAuthStateChange(async (event, session) => {
 
   if (codeParrainage) {
     await supabaseClient.rpc("appliquer_parrainage", { p_code: codeParrainage });
+    localStorage.removeItem("dmq_ref");
   }
 
   afficher(etatSucces);

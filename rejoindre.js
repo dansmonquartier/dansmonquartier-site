@@ -29,8 +29,14 @@ form.addEventListener("submit", async (e) => {
   submitBtn.textContent = "Création en cours…";
   afficherNote("", false);
 
+  // Le code de parrainage passe par localStorage plutôt que par l'URL de
+  // redirection : Supabase compare emailRedirectTo à la liste blanche du
+  // dashboard de façon stricte, un ?ref=... collé dessus suffit à casser
+  // la correspondance et à faire retomber le lien de confirmation sur le
+  // Site URL par défaut (localhost:3000) au lieu de confirmation.html.
+  if (codeParrainage) localStorage.setItem("dmq_ref", codeParrainage);
+
   const redirectUrl = new URL("confirmation.html", window.location.href);
-  if (codeParrainage) redirectUrl.searchParams.set("ref", codeParrainage);
 
   const { error } = await supabaseClient.auth.signUp({
     email,
